@@ -1,51 +1,64 @@
-#using pygame we creating a game called *Snake game*
+How To implement Snake Game in Python?
 
-import pygame, sys, time, random
+   ->Installing Pygame.
+   ->Create the Screen.
+   ->Create the Snake.
+   ->Moving the Snake.
+   ->Game Over when Snake hits the boundaries.
+   ->Adding the Food.
+   ->Increasing the Length of the Snake.
+   ->Displaying the Score.
+___Coding
+   
+   
+   
+   
+    import pygame, sys, time, random
 
 
 
-speed = 15
+    speed = 15
 
 
-frame_size_x = 1380
-frame_size_y= 840
+    frame_size_x = 1380
+    frame_size_y= 840
 
 
-check_errors = pygame.init()
+    check_errors = pygame.init()
 
-if(check_errors[1] > 0):
-    print("Error " + check_errors[1])
-else:
-    print("Game Succesfully initialized")
+    if(check_errors[1] > 0):
+         print("Error " + check_errors[1])
+    else:
+         print("Game Succesfully initialized")
     
 
-pygame.display.set_caption("Snake Game")
-game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
+    pygame.display.set_caption("Snake Game")
+    game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
 
-black = pygame.Color(0,0,0)
-white = pygame.Color(255,255,255)
-red = pygame.Color(255,0,0)
-green = pygame.Color(0,255,0)
-blue = pygame.Color(0,0,255)
+    black = pygame.Color(0,0,0)
+    white = pygame.Color(255,255,255)
+    red = pygame.Color(255,0,0)
+    green = pygame.Color(0,255,0)
+    blue = pygame.Color(0,0,255)
 
 
-fps_controller = pygame.time.Clock()
+    fps_controller = pygame.time.Clock()
 
-square_size = 60
+    square_size = 60 
 
-def init_vars():
-    global head_pos, snake_body, food_pos, food_spawn, score, direction
-    direction = "RIGHT"
-    head_pos = [120,60]
-    snake_body = [[120,60]]
-    food_pos = [random.randrange(1,(frame_size_x // square_size)) * square_size, 
+    def init_vars():
+        global head_pos, snake_body, food_pos, food_spawn, score, direction
+        direction = "RIGHT"
+        head_pos = [120,60]
+        snake_body = [[120,60]]
+        food_pos = [random.randrange(1,(frame_size_x // square_size)) * square_size, 
                 random.randrange(1,(frame_size_y // square_size)) * square_size]
-    food_spawn = True
-    score = 0
+        food_spawn = True
+        score = 0
     
-init_vars()
+    init_vars()
 
-def show_score(choice, color, font, size):
+    def show_score(choice, color, font, size):
     score_font = pygame.font.SysFont(font, size)
     score_surface = score_font.render("Score: " + str(score), True, color)
     score_rect = score_surface.get_rect()
@@ -58,11 +71,11 @@ def show_score(choice, color, font, size):
     
 
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+    while True:
+         for event in pygame.event.get():
+             if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
         elif event.type == pygame.KEYDOWN:
             if ( event.key == pygame.K_UP or event.key == ord("w") 
                 and direction != "DOWN"):
